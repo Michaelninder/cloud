@@ -22,7 +22,7 @@
                         </div>
                         <div class="text-left">
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Your Tags</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $stats['tags'] }}</p>
+                            <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['tags'] }}</p>
                         </div>
                     </div>
                 </div>
