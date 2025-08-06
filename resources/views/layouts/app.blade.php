@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -26,6 +26,37 @@
                     </div>
                 </header>
             @endisset
+
+            <!-- Session Status -->
+            <div class="py-4 px-6">
+            @if (session('status'))
+                <div class="bg-green-500 text-white p-4 rounded-lg shadow-md">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="bg-red-500 text-white p-4 rounded-lg shadow-md">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @elseif (session('error'))
+                <div class="bg-red-500 text-white p-4 rounded-lg shadow-md">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="bg-blue-500 text-white p-4 rounded-lg shadow-md">
+                    {{ session('success') }}
+                </div>
+            @elseif (session('info'))
+                <div class="bg-yellow-500 text-white p-4 rounded-lg shadow-md">
+                    {{ session('info') }}
+                </div>
+            @endif
+            </div>
 
             <!-- Page Content -->
             <main>

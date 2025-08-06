@@ -13,7 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = auth()->user()->tags()->get();
+        $tags = auth()->user()->tags()->paginate(12);
         return view('cloud.tags.index', compact('tags'));
     }
 
