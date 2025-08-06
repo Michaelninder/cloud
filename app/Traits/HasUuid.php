@@ -135,7 +135,7 @@ trait HasUuid
             return $this->uuidFieldName;
         }
 
-        return 'uuid';
+        return 'id';
     }
 
     /**

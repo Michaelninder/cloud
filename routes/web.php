@@ -16,9 +16,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('tags', CloudTagController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+Route::middleware(['auth', 'verified'])->name('cloud.')->group(function () {
+    Route::resource('tags', CloudTagController::class)
+        ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
 });
 
 require __DIR__.'/auth.php';

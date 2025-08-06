@@ -22,7 +22,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('cloud.tags.create');
     }
 
     /**
@@ -30,7 +30,17 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
+        ]);
+        $tag = Tag::create([
+            'user_id' => auth()->id(),
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
+        ]);
+
+        return redirect()->route('cloud.tags.index')->with('success', 'Tag created successfully.');
     }
 
     /**
