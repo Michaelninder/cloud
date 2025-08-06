@@ -50,7 +50,7 @@ trait HasUuid
            if (!empty($originalUuid)) {
                 if ($originalUuid !== $model->{$uuidFieldName}) {
                     $model->{$uuidFieldName} = $originalUuid;
-                    Log::warning('Attempt to change existing UUID blocked');
+                    \Log::warning('Attempt to change existing UUID blocked');
                 }
             } 
         });
