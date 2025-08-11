@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar_path',
         'role',
     ];
 
@@ -51,5 +52,14 @@ class User extends Authenticatable
     public function tags()
     {
         return $this->hasMany(Tag::class);
+    }
+
+    public function avatar()
+    {
+        if ($this->avatar_path) {
+            return asset('storage/' . $this->avatar_path);
+        }
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
 }
