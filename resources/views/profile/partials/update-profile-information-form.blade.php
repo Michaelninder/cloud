@@ -34,6 +34,12 @@
                                dark:file:text-indigo-300 dark:hover:file:bg-indigo-800">
                     <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
                 </div>
+                @if ($user->avatar_path)
+                <button type="submit" name="remove_avatar" value="1"
+                    class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition ease-in-out duration-150">
+                    {{ __('Remove Avatar') }}
+                </button>
+                @endif
             </div>
         </div>
 

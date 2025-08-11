@@ -30,11 +30,16 @@ class ProfileController extends Controller
         $user = $request->user();
         $validated = $request->validated();
 
-        if ($request->hasFile('avatar')) {
+        if ($request->has('remove_avatar') && $request->input('remove_avatar') == 1) {
+            if ($user->avatar_path) {
+                Storage::disk('public')->delete($user->avatar_path);
+                $user->avatar_path = null;
+            }
+        } elseif ($request->hasFile('avatar')) {
             if ($user->avatar_path) {
                 Storage::disk('public')->delete($user->avatar_path);
             }
-            $validated['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar_path = $request->file('avatar')->store('avatars', 'public');
         }
 
         $user->fill($validated);
@@ -60,6 +65,10 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
+
+        if ($user->avatar_path) {
+            Storage::disk('public')->delete($user->avatar_path);
+        }
 
         $user->delete();
 
