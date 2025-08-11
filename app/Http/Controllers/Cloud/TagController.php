@@ -49,7 +49,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('cloud.tags.show', compact('tag'));
     }
 
     /**
