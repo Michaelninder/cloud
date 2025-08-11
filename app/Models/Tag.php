@@ -12,6 +12,9 @@ class Tag extends Model
 {
     use HasFactory, HasUuid;
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+    
     protected $fillable = [
         'user_id',
         'name',
