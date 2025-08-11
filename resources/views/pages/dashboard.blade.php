@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                    {{ __("Hello, :name!", ['name' => Auth()->user()->name]) }}
                 </div>
             </div>
 
@@ -21,8 +21,12 @@
                             <i></i>
                         </div>
                         <div class="text-left">
-                            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Your Tags</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $stats['tags'] }}</p>
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
+                                Your Tags
+                            </p>
+                            <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                                {{ $stats['tags'] }}
+                            </p>
                         </div>
                     </div>
                 </div>
