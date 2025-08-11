@@ -24,4 +24,14 @@ class Tag extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function files(): MorphToMany
+    {
+        return $this->morphedByMany(File::class, 'taggable');
+    }
+
+    public function folders(): MorphToMany
+    {
+        return $this->morphedByMany(Folder::class, 'taggable');
+    }
 }

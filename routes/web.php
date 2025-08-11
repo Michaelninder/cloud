@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Base\PageController;
-use App\Http\Controllers\Cloud\TagController as CloudTagController;
+use App\Http\Controllers\Cloud\FileController;
+use App\Http\Controllers\Cloud\FolderController;
+use App\Http\Controllers\Cloud\TagController;
 
 Route::get('/', [PageController::class, 'lander'])->name('lander');
 Route::redirect('/home', '/')->name('home');
@@ -16,9 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->name('cloud.')->group(function () {
-    Route::resource('tags', CloudTagController::class)
-        ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+Route::middleware(['auth', 'verified'])->name('cloud.')->prefix('cloud')->group(function () {
+    Route::resource('tags', TagController::class);
+    Route::resource('files', FileController::class);
+    Route::resource('folders', FolderController::class);
 });
 
 require __DIR__.'/auth.php';
