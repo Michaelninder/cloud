@@ -1,4 +1,4 @@
-<section>
+<section x-data="{ avatarPreview: '{{ $user->avatar() }}' }">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Profile Information') }}
@@ -21,7 +21,7 @@
         <div>
             <x-input-label for="avatar" :value="__('Avatar')" />
             <div class="flex items-center space-x-4 mt-2">
-                <img class="h-20 w-20 rounded-full object-cover" src="{{ $user->avatar() }}"
+                <img class="h-20 w-20 rounded-full object-cover" :src="avatarPreview"
                     alt="{{ $user->name }}">
                 <div>
                     <input type="file" name="avatar" id="avatar" accept="image/*"
@@ -31,7 +31,19 @@
                                file:text-sm file:font-semibold
                                file:bg-indigo-50 file:text-indigo-700
                                hover:file:bg-indigo-100 dark:file:bg-indigo-900
-                               dark:file:text-indigo-300 dark:hover:file:bg-indigo-800">
+                               dark:file:text-indigo-300 dark:hover:file:bg-indigo-800"
+                        x-on:change="
+                            const file = $event.target.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    avatarPreview = e.target.result;
+                                };
+                                reader.readAsDataURL(file);
+                            } else {
+                                avatarPreview = '{{ $user->avatar() }}';
+                            }
+                        ">
                     <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
                 </div>
                 @if ($user->avatar_path)
