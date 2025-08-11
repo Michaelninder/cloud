@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cloud;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
@@ -56,7 +57,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('cloud.tags.edit', compact('tag'));
     }
 
     /**
@@ -64,7 +65,26 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $validated = $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('tags')
+                    ->where('user_id', auth()->id())
+                    ->ignore($tag->id),
+            ],
+            'description' => 'nullable|string|max:1000',
+        ]);
+
+        $tag->update([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
+        ]);
+
+        return redirect()
+            ->route('cloud.tags.index')
+            ->with('success', 'Tag updated successfully.');
     }
 
     /**
