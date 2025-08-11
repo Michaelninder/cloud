@@ -22,7 +22,7 @@ class FolderController extends Controller
      */
     public function create()
     {
-        //
+        return view('cloud.folders.create');
     }
 
     /**

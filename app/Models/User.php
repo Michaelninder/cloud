@@ -13,6 +13,10 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasUuid;
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -51,7 +55,7 @@ class User extends Authenticatable
 
     public function tags()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->hasMany(Tag::class);
     }
 
     public function folders()

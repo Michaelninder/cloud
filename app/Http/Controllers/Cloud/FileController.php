@@ -22,7 +22,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        return view('cloud.files.create');
     }
 
     /**
