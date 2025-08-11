@@ -27,6 +27,7 @@
                             <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                                 {{ $stats['tags'] }}
                             </p>
+                            <a class="text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 duration-[0.3456789s]" href="{{ route('cloud.tags.index') }}">SHow Tags</a>
                         </div>
                     </div>
                 </div>
