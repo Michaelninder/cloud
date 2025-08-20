@@ -1,5 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.app')
+@section('header')
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl leading-tight text-gray-800 dark:text-gray-200">
                 {{ __('Tags') }}
@@ -8,8 +8,9 @@
                 Create new Tag
             </a>
         </div>
-    </x-slot>
+@endsection
 
+@section('content')
     <div class="">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
@@ -74,4 +75,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
