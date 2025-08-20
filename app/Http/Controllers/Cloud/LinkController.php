@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Link;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LinkController extends Controller
 {
@@ -23,7 +24,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('cloud.links.create');
     }
 
     /**
@@ -31,7 +32,25 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'original_url' => ['required', 'string', 'url'],
+            'slug' => ['nullable', 'string', 'max:5', 'unique:links,slug'],
+        ]);
+
+        $slug = $request->input('slug');
+        if (empty($slug)) {
+            do {
+                $slug = Str::random(5);
+            } while (Link::where('slug', $slug)->exists());
+        }
+
+        $link = Link::create([
+            'user_id' => auth()->user()->id,
+            'original_url' => $request->input('original_url'),
+            'slug' => $slug,
+        ]);
+
+        return redirect()->route('cloud.links.index')->with('success', __('Link created successfully!'));
     }
 
     /**
