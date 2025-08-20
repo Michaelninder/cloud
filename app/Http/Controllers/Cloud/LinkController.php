@@ -58,7 +58,12 @@ class LinkController extends Controller
      */
     public function show(Link $link)
     {
-        //
+        $link = Link::findOrFail($link->id);
+        /*dd($link);
+        if ($link->user_id !== auth()->id()) {
+            abort(403);
+        }*/
+        return view('cloud.links.show', compact('link'));
     }
 
     /**

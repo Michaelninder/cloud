@@ -23,6 +23,9 @@
                     <x-nav-link :href="route('cloud.folders.index')" :active="request()->routeIs('cloud.folders.*')">
                         {{ __('Folders') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('cloud.links.index')" :active="request()->routeIs('cloud.links.*')">
+                        {{ __('Links') }}
+                    </x-nav-link>
                 </div>
             </div>
 
