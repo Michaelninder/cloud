@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cloud;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Link;
 use Illuminate\Http\Request;
@@ -12,7 +14,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+        $links = auth()->user()->links()->paginate(12);
+        return view('cloud.links.index', compact('links'));
     }
 
     /**

@@ -76,4 +76,9 @@ class User extends Authenticatable
 
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
     }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
 }

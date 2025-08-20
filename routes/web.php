@@ -6,6 +6,7 @@ use App\Http\Controllers\Base\PageController;
 use App\Http\Controllers\Cloud\FileController;
 use App\Http\Controllers\Cloud\FolderController;
 use App\Http\Controllers\Cloud\TagController;
+use App\Http\Controllers\Cloud\LinkController;
 
 Route::get('/', [PageController::class, 'lander'])->name('lander');
 Route::redirect('/home', '/')->name('home');
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'verified'])->name('cloud.')->prefix('cloud')->group(
     Route::resource('tags', TagController::class);
     Route::resource('files', FileController::class);
     Route::resource('folders', FolderController::class);
+    Route::resource('links', LinkController::class);
 });
 
 require __DIR__.'/auth.php';
