@@ -8,36 +8,42 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Tag extends Model
+class Note extends Model
 {
     use HasFactory, HasUuid;
 
     protected $keyType = 'string';
     public $incrementing = false;
-    
+
     protected $fillable = [
         'user_id',
-        'name',
-        'description',
+        'title',
+        'content',
+        'slug',
+        'is_public',
     ];
 
-    public function user(): BelongsTo
+    protected $casts = [
+        'is_public' => 'boolean',
+    ];
+
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function files(): MorphToMany
+    public function tags()
     {
-        return $this->morphedByMany(File::class, 'taggable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function folders(): MorphToMany
+    public function categories()
     {
-        return $this->morphedByMany(Folder::class, 'taggable');
+        return $this->belongsToMany(Category::class, 'note_category', 'note_id', 'category_id');
     }
 
-    public function notes(): MorphToMany
+    public function getRouteKeyName()
     {
-        return $this->morphedByMany(Note::class, 'taggable');
+        return 'slug';
     }
 }
