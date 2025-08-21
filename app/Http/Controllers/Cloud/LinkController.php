@@ -100,4 +100,10 @@ class LinkController extends Controller
 
         return redirect()->route('cloud.links.index')->with('success', __('Link deleted successfully!'));
     }
+
+    public function redirect(Link $link)
+    {
+        //return redirect()->url($link->original_url);
+        return redirect()->to($link->original_url);
+    }
 }

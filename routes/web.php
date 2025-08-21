@@ -26,4 +26,8 @@ Route::middleware(['auth', 'verified'])->name('cloud.')->prefix('cloud')->group(
     Route::resource('links', LinkController::class);
 });
 
+
 require __DIR__.'/auth.php';
+
+
+Route::get('/{link}', [LinkController::class , 'redirect'])->name('cloud.links.redirect');
