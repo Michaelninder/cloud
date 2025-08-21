@@ -109,11 +109,21 @@
                                         </p>
                                     </div>
                                     <div class="flex items-center space-x-2 ml-4">
-                                        <button onclick="copyToClipboard('{{ url($link->slug) }}')" class="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-1 rounded-md tooltip" data-tooltip="Copy Shortened Link">
+                                        <!--button onclick="copyToClipboard('{{ url($link->slug) }}')" class="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-1 rounded-md tooltip" data-tooltip="Copy Shortened Link">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h3.2a2 2 0 012 2V17a2 2 0 01-2 2H7.8a2 2 0 01-2-2V7a2 2 0 012-2h3.2" />
                                             </svg>
-                                        </button>
+                                        </button-->
+                                        <!--button onclick="copyToClipboard('{{ route('cloud.links.redirect', ['link' => $link]) }}')" class="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-1 rounded-md tooltip" data-tooltip="Copy Shortened Link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h3.2a2 2 0 012 2V17a2 2 0 01-2 2H7.8a2 2 0 01-2-2V7a2 2 0 012-2h3.2" />
+                                            </svg>
+                                        </button-->
+                                        <a href="{{ url($link->slug) }}" target="_blank" class="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 p-1 rounded-md tooltip" data-tooltip="Open Shortened Link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </a>
                                         <a href="{{ route('cloud.links.show', $link->slug) }}" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-1 rounded-md tooltip" data-tooltip="Show Details">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
