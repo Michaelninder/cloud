@@ -58,7 +58,7 @@ class LinkController extends Controller
      */
     public function show(Link $link)
     {
-        $link = Link::findOrFail($link->id);
+        //$link = Link::findOrFail($link->id);
         /*dd($link);
         if ($link->user_id !== auth()->id()) {
             abort(403);
@@ -71,7 +71,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        return view('cloud.links.edit', compact('link'));
     }
 
     /**
@@ -79,7 +79,16 @@ class LinkController extends Controller
      */
     public function update(Request $request, Link $link)
     {
-        //
+        $request->validate([
+            'original_url' => ['required', 'string', 'url'],
+            // no slug-change (for now)
+        ]);
+
+        $link->update([
+            'original_url' => $request->input('original_url'),
+        ]);
+
+        return redirect()->route('cloud.links.index')->with('success', __('Link updated successfully!'));
     }
 
     /**
@@ -87,6 +96,8 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $link->delete();
+
+        return redirect()->route('cloud.links.index')->with('success', __('Link deleted successfully!'));
     }
 }
