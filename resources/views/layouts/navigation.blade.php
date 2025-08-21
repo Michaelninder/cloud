@@ -27,6 +27,9 @@
                         <x-nav-link :href="route('cloud.links.index')" :active="request()->routeIs('cloud.links.*')">
                             <i class="bi bi-link-45deg mr-2"></i>{{ __('Links') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('cloud.notes.index')" :active="request()->routeIs('cloud.notes.*')">
+                            <i class="bi bi-journal-text mr-2"></i>{{ __('Notes') }}
+                        </x-nav-link>
                     </div>
                 @endauth
             </div>
@@ -105,6 +108,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('cloud.links.index')" :active="request()->routeIs('cloud.links.*')">
                     <i class="bi bi-link-45deg mr-2"></i>{{ __('Links') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('cloud.notes.index')" :active="request()->routeIs('cloud.notes.*')">
+                    <i class="bi bi-journal-text mr-2"></i>{{ __('Notes') }}
                 </x-responsive-nav-link>
             @endauth
         </div>

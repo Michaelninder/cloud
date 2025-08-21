@@ -61,6 +61,21 @@
                             <span class="text-sm text-gray-600 dark:text-gray-400">Total views across all your links</span>
                         </div>
                     </div>
+
+                    <div class="flex items-center gap-4 rounded-xl bg-gray-100 dark:bg-gray-700 p-6 shadow hover:shadow-md transition duration-300">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-300 dark:bg-gray-600">
+                            <i class="bi bi-journal-text text-3xl text-gray-800 dark:text-gray-200"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
+                                Your Notes
+                            </p>
+                            <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                                {{ $stats['notes'] }}
+                            </p>
+                            <a class="text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 duration-[0.3456789s]" href="{{ route('cloud.notes.index') }}">Show Notes</a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
