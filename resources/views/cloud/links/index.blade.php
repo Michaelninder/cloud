@@ -27,9 +27,12 @@
                                     class="rounded-lg bg-gray-100 p-4 shadow-sm dark:bg-gray-700"
                                 >
                                     <h4
-                                        class="text-lg font-semibold text-gray-900 dark:text-gray-100"
+                                        class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex justify-between items-center"
                                     >
-                                        {{ $link->slug }}
+                                        <span>{{ $link->slug }}</span>
+                                        <span class="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-800 dark:bg-indigo-900 dark:text-indigo-100">
+                                            {{ $link->getViewCount() }} Views
+                                        </span>
                                     </h4>
                                     <p class="text-sm text-gray-600 dark:text-gray-300">
                                         {{ Str::limit($link->original_url, 46) }}

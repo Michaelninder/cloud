@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cloud;
 use App\Http\Controllers\Controller;
 
 use App\Models\Link;
+use App\Models\LinkView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -100,10 +101,16 @@ class LinkController extends Controller
 
         return redirect()->route('cloud.links.index')->with('success', __('Link deleted successfully!'));
     }
-
-    public function redirect(Link $link)
+    
+    public function redirect(Link $link, Request $request)
     {
-        //return redirect()->url($link->original_url);
+        LinkView::create([
+            'link_id' => $link->id,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+            'visited_at' => now(),
+        ]);
+        
         return redirect()->to($link->original_url);
     }
 }

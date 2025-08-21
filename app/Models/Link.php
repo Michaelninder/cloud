@@ -32,4 +32,9 @@ class Link extends Model
     {
         return $this->hasMany(LinkView::class);
     }
+
+    public function getViewCount()
+    {
+        return $this->views()->count();
+    }
 }
