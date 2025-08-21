@@ -15,6 +15,7 @@ class PageController extends Controller
     public function dashboard()
     {
         $stats['tags'] = auth()->user()->tags()->count();
+        $stats['links'] = auth()->user()->links()->count();
         return view('pages.dashboard', compact('stats'));
     }
 }
