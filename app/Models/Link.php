@@ -27,4 +27,9 @@ class Link extends Model
     {
         return 'slug';
     }
+
+    public function views()
+    {
+        return $this->hasMany(LinkView::class);
+    }
 }

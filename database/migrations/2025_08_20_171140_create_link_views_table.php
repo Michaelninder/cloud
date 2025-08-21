@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('link_views', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('link_id');
+            $table->ipAddress('ip_address');
+            $table->string('user_agent');
+            $table->timestamp('visited_at');
             $table->timestamps();
         });
     }
