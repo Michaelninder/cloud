@@ -21,6 +21,11 @@ class Tag extends Model
         'description',
     ];
 
+    protected $casts = [
+        'id' => 'string',
+        'user_id'=> 'string',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

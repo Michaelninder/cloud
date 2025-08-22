@@ -49,8 +49,8 @@ class NoteController extends Controller
             'categories.*' => ['uuid', Rule::exists('categories', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
             })],
-            'tags' => ['nullable', 'array'],
-            'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
+            //'tags' => ['nullable', 'array'],
+            //'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
             })],
         ]);
@@ -105,6 +105,9 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
+
+        dd($request->all());
+
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
@@ -114,12 +117,14 @@ class NoteController extends Controller
             'categories.*' => ['uuid', Rule::exists('categories', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
             })],
-            'tags' => ['nullable', 'array'],
-            'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
+            //'tags' => ['nullable', 'array'],
+            //'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
             })],
         ]);
 
+        dump($validatedData);
+        
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title']);
         $originalSlug = $slug;
         $count = 1;
