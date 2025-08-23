@@ -50,9 +50,9 @@ class NoteController extends Controller
                 return $query->where('user_id', auth()->id());
             })],
             //'tags' => ['nullable', 'array'],
-            //'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
+            /*'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
-            })],
+            })],*/
         ]);
 
         $slug = $validatedData['slug'] ?? Str::slug($validatedData['title']);
@@ -118,9 +118,9 @@ class NoteController extends Controller
                 return $query->where('user_id', auth()->id());
             })],
             //'tags' => ['nullable', 'array'],
-            //'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
+            /*'tags.*' => ['uuid', Rule::exists('tags', 'id')->where(function ($query) {
                 return $query->where('user_id', auth()->id());
-            })],
+            })],*/
         ]);
 
         dump($validatedData);
