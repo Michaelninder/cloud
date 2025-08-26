@@ -18,12 +18,12 @@
                         <x-nav-link :href="route('cloud.tags.index')" :active="request()->routeIs('cloud.tags.*')">
                             <i class="bi bi-tags-fill mr-2"></i>{{ __('Tags') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('cloud.files.index')" :active="request()->routeIs('cloud.files.*')">
+                        {{--<x-nav-link :href="route('cloud.files.index')" :active="request()->routeIs('cloud.files.*')">
                             <i class="bi bi-file-earmark-fill mr-2"></i>{{ __('Files') }}
                         </x-nav-link>
                         <x-nav-link :href="route('cloud.folders.index')" :active="request()->routeIs('cloud.folders.*')">
                             <i class="bi bi-folder-fill mr-2"></i>{{ __('Folders') }}
-                        </x-nav-link>
+                        </x-nav-link>--}}
                         <x-nav-link :href="route('cloud.links.index')" :active="request()->routeIs('cloud.links.*')">
                             <i class="bi bi-link-45deg mr-2"></i>{{ __('Links') }}
                         </x-nav-link>
